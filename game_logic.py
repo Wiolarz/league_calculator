@@ -1,11 +1,3 @@
-#include <iostream>
-#include <map>
-#include <fstream>
-
-
-
-
-
 '''
 
 First version aims to calculate HP value of a champion based on his level
@@ -19,69 +11,70 @@ dragon/baron/golem/other heroes buffs
 
 '''
 
-
-
-
-
-
-
-
-
-class Backpack:
-    def __init__(self, items = None):
-        if items == None:
-            items = []
-        self.items = items
-
-
 class Champion:
-
     def __init__(self, stats):
+        self.base_data = {
+            "health": 0,
+            "hp_regen": 0,
+            "armor": 0,
+            "magic_res": 0,
+            "mana": 0,
+            "mana_regen": 0,
+            "ad": 0,
+            "aa_speed": 0,
+            "ap": 0,
+            "armor_pen": 0,
+            "critical_chance": 0,
+            "critical_dmg": 0,
+            "lifesteal": 0,
+            "magic_pen": 0,
+            "omnivamp": 0,
+            "physival_vamp": 0,
+            "heal_shield": 0,
+            "tenacity": 0,
+            "slow_res": 0,
+            "ability_haste": 0}
+        self.base_data["health"] = stats["health"]
+        self.base_data["hp_regen"] = stats["hp_regen"]
+        self.base_data["armor"] = stats["armor"]
+        self.base_data["magic_res"] = stats["magic_res"]
+        self.base_data["mana"] = stats["mana"]
+        self.base_data["mana_regen"] = stats["mana_regen"]
+        self.base_data["ad"] = stats["ad"]
+        self.base_data["as"] = stats["as"]  # auto attack speed
 
-        self.health = stats["health"]
-        self.hp_regen = stats["hp_regen"]
-        self.armor = stats["armor"]
-        self.magic_res = stats["magic_res"]
-        self.mana = stats["mana"]
-        self.mana_regen = stats["mana_regen"]
-        self.ad = stats["ad"]
-        self.aa_speed = stats["as"]  # auto attack speed
+        self.data = self.base_data.copy()
 
-        self.ap = 0
-
-        self.ap = 0
-        self.armor_pen = 0
-        self.critical_chance = 0
-        self.critical_dmg = 0
-        self.lifesteal = 0
-        self.magic_pen = 0
-        self.omnivamp = 0
-        self.physival_vamp = 0
-        self.heal_shield = 0
-        self.tenacity = 0
-        self.slow_res = 0
-        self.ability_haste = 0
 
     def aa_dps(self):
         return self.ad * self.aa_speed
+
+    def apply_items(self, bag):
+        self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
+        for item in bag:
+            for attribute in item.stats:
+                self.data[attribute.type] += attribute.stat
+
 
 
 
 class Player:
     def __init__(self, champion, bag):
-        self.champion = champion
-        self.bag = bag
+        self.champion = champion  # object champion
+        self.bag = bag  # is an array of the maximum size of 6 of objects "items"
+
+    def equip_items(self):
+        self.champion.apply_items(self.bag)
 
 
 
 def champion_levelup(level, base_sheet):
     # this method takes a champion stat sheet and the desired level and returns updated values
-
-    ''' growth of statistics
-     Statistic = b + (g * (n - 1) * (0.7025 + (0.0175 * (n - 1))))
+    """ growth of statistics
+     Statistic = b + (g * (n - 1) * (0.7025 + (0.0175 * (n - 1))))  # general equation
+     statIncrease = g * (0.65 + (0.035 * new_level)  # used in the code
      b = base, g = growth statistic, n champion level
-     g'''
-
+     """
 
     stats = base_sheet.copy()
 
@@ -101,7 +94,6 @@ def champion_levelup(level, base_sheet):
 
 
 def test():
-
     stat_sheet ={# example Ashe statistics
                 "health": 570,
                 "hp_regen": 3.5,
@@ -126,7 +118,7 @@ def test():
                 "range": 600}
 
     champion = Champion(stat_sheet)
-    bag = Backpack()
+
 
     #shield = Item()
 
