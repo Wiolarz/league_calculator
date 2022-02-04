@@ -128,11 +128,11 @@ def test():
     champion = Champion(stat_sheet)
     bag = Backpack()
 
-    shield = Item()
+    #shield = Item()
 
-    bag.items.append(shield)
+    #bag.items.append(shield)
 
-    player = Player(champion, bag)
+    #player = Player(champion, bag)
 
     print(stat_sheet["health"])
     ashe = champion_levelup(10, stat_sheet)
