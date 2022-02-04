@@ -13,35 +13,11 @@ dragon/baron/golem/other heroes buffs
 
 class Champion:
     def __init__(self, stats):
-        self.base_data = {
-            "health": 0,
-            "hp_regen": 0,
-            "armor": 0,
-            "magic_res": 0,
-            "mana": 0,
-            "mana_regen": 0,
-            "ad": 0,
-            "aa_speed": 0,
-            "ap": 0,
-            "armor_pen": 0,
-            "critical_chance": 0,
-            "critical_dmg": 0,
-            "lifesteal": 0,
-            "magic_pen": 0,
-            "omnivamp": 0,
-            "physival_vamp": 0,
-            "heal_shield": 0,
-            "tenacity": 0,
-            "slow_res": 0,
-            "ability_haste": 0}
-        self.base_data["health"] = stats["health"]
-        self.base_data["hp_regen"] = stats["hp_regen"]
-        self.base_data["armor"] = stats["armor"]
-        self.base_data["magic_res"] = stats["magic_res"]
-        self.base_data["mana"] = stats["mana"]
-        self.base_data["mana_regen"] = stats["mana_regen"]
-        self.base_data["ad"] = stats["ad"]
-        self.base_data["as"] = stats["as"]  # auto attack speed
+        self.base_data = {"health": stats["health"], "hp_regen": stats["hp_regen"], "armor": stats["armor"],
+                          "magic_res": stats["magic_res"], "mana": stats["mana"], "mana_regen": stats["mana_regen"],
+                          "ad": stats["ad"], "aa_speed": 0, "ap": 0, "armor_pen": 0, "critical_chance": 0,
+                          "critical_dmg": 0, "lifesteal": 0, "magic_pen": 0, "omnivamp": 0, "physival_vamp": 0,
+                          "heal_shield": 0, "tenacity": 0, "slow_res": 0, "ability_haste": 0, "as": stats["as"]}
 
         self.data = self.base_data.copy()
 

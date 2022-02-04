@@ -8,6 +8,16 @@ def test_basic_items_permutation(basic_items_list):
     :param basic_items_list:
     :return:
     """
+    basic_items_list.append(None)
+    result = []
+    for item_1 in basic_items_list:
+        for item_2 in basic_items_list:
+            for item_3 in basic_items_list:
+                for item_4 in basic_items_list:
+                    for item_5 in basic_items_list:
+                        for item_6 in basic_items_list:
+                            result.append([item_1, item_2, item_3, item_4, item_5, item_6])
+    return result
 
 
 

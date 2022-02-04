@@ -104,6 +104,6 @@ def starter_items_get_all():
         items.append([line[0], new_item])
 
     for item in items:
-        print(item)
+        #print(item)
         pass
     return items
