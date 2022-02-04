@@ -1,0 +1,12 @@
+Cull	450	ad	7
+Dark Seal	350	ap	15	health	40
+Doran Blade	450	ad	8	health	80
+Doran Ring	400	ap	15	health	70
+Doran Shield	540	health	80
+Emberknife	350
+Hailblade	350
+Relic Shield	400	ap	5	health	30	hp_regen	25
+Spectral Sickle	400	ad	5	health	10	mana_regen	25
+Spellthief Edge	400	ap	8	health	10	mana_regen	50
+Steel Shoulderguards	400	ad	3	health	30	hp_regen	25
+Tear	400	mana	240

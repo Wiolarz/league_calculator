@@ -1,0 +1,16 @@
+Amplifying Tome	435	ap	20
+B. F. Sword	1300	ad	40
+Blasting Wand	850	ap	40
+Cloak of Agility	600	critical_chance	15
+Cloth Armor	300	armor	15
+Dagger	300	aa_speed	12
+Faerie Charm	250	mana_regen	50
+Long Sword	350	ad	10
+Needlessly Large Rod	1250	ap	60
+Null-magic mantle	450	magic_res	25
+Pickaxe	875	ad	25
+Rejuvenation Bead	400	hp_regen	50
+Ruby Crystal	400	health	150
+Sapphire Crystal	350	mana	250
+Sheen	700
+Stopwatch	650
