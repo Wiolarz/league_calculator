@@ -28,14 +28,18 @@ class Champion:
     def apply_items(self, bag):
         self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
         for item in bag:
-            for attribute in item.stats:
-                self.data[attribute.type] += attribute.stat
+            if item != None:
+                for attribute in item.stats:
+                    self.data[attribute.type] += attribute.stat
+
 
 
 
 
 class Player:
-    def __init__(self, champion, bag):
+    def __init__(self, champion, bag = None):
+        if bag == None:
+            bag = []
         self.champion = champion  # object champion
         self.bag = bag  # is an array of the maximum size of 6 of objects "items"
 
@@ -69,7 +73,7 @@ def champion_levelup(level, base_sheet):
 
 
 
-def test():
+def ashe_tester():
     stat_sheet ={# example Ashe statistics
                 "health": 570,
                 "hp_regen": 3.5,
@@ -102,9 +106,9 @@ def test():
 
     #player = Player(champion, bag)
 
-    print(stat_sheet["health"])
-    ashe = champion_levelup(10, stat_sheet)
 
-    print(ashe["health"])
+    #ashe = champion_levelup(10, stat_sheet)
+
+    return champion
 
 

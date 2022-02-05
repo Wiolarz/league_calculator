@@ -61,7 +61,7 @@ class Stat:
         if type == None:
             type = "health"
 
-        self.stat = stat
+        self.stat = float(stat)
         self.type = type
 
     def __repr__(self):
@@ -69,20 +69,23 @@ class Stat:
 
 
 class Item:
-    def __init__(self, cost = None, stats = None):
+    def __init__(self, name = None, cost = None, stats = None):
+        if name == None:
+            name = "error"
         if cost == None:
             cost = 0
         if stats == None:
             stats = []
+        self.name = name
         self.stats = stats
-        self.cost = cost
+        self.cost = int(cost)
 
     '''    def __str__(self):
         #text = self.cost, self.stats
         return self.cost'''
 
     def __repr__(self):
-        return str(self.cost) + "g " + str(self.stats)
+        return str(self.name) + " " + str(self.cost) + "g " + str(self.stats)
 
 
 def starter_items_get_all():
@@ -100,8 +103,8 @@ def starter_items_get_all():
             stats.append(Stat(line[index - 1], line[index]))
 
 
-        new_item = Item(line[1], stats)
-        items.append([line[0], new_item])
+        new_item = Item(line[0], line[1], stats)
+        items.append(new_item)
 
     for item in items:
         #print(item)

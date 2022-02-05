@@ -9,13 +9,27 @@ def starter_item_test():
     #for bag in result:
         #print(bag)
     print(len(result))
+    return result
 
 
-# Press the green button in the gutter to run the script.
+def champion_hp_max(items):
+    ashe = game_logic.ashe_tester()
+    player = game_logic.Player(ashe)
+    max_hp = float(player.champion.data["health"])
+    print(max_hp)
+    for bag in items:
+        ashe.apply_items(bag)
+        if max_hp < player.champion.data["health"]:
+            max_hp = player.champion.data["health"]
+    print(max_hp)
+
 if __name__ == '__main__':
     print("start")
     #game_logic.test()
     #file_handler.champions_stats_get_all()
-    starter_item_test()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    items_database = starter_item_test()
+    #items_database = [[file_handler.Item("shield", 10, [file_handler.Stat("health", 100)])]]
+    champion_hp_max(items_database)
+
+
