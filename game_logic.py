@@ -22,19 +22,43 @@ class Champion:
 
         self.data = self.base_data.copy()
 
+        self.hp = self.data["health"]
+        self.mana = self.data["mana"]
+
+    def apply_items(self, bag):
+        self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
+        health_regen = 100  # percentage value of increased health regen
+        for item in bag:
+            for attribute in item.stats:
+                if attribute.type == "hp_regen":
+                    health_regen += attribute.stat
+                else:
+                    self.data[attribute.type] += attribute.stat
+
+        self.data["hp_regen"] *= (health_regen / 100)
 
     def aa_dps(self):
         return self.ad * self.aa_speed
 
-    def apply_items(self, bag):
-        self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
-        for item in bag:
-            for attribute in item.stats:
-                self.data[attribute.type] += attribute.stat
+    def receive_damage(self, value, type):
+        """
+        Testing champion durability
+        :param value: amount of damage dealt
+        :param type: damage type can be: "ad"physical, "ap"magic or "tr" true
+        """
+        if type == "ad":
+            value /= 1 + (self.data["armor"] / 100)
+        elif type == "ap":
+            value /= 1 + (self.data["magic_res"] / 100)
 
+        self.hp -= value
 
-
-
+    def regenerate_health(self):
+        # every health regen tick occurs every half second
+        # health regen values are counted based on their regen over a period of 5 seconds
+        self.hp += self.data["hp_regen"] / 10
+        if self.hp > self.data["health"]:
+            self.hp = self.data["health"]
 
 
 class Player:

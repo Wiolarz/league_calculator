@@ -1,7 +1,17 @@
 """
-Functions in this files will take players and items lists, then mix those items into every possible build
-finally printing results
+File for managing items and creating builds
 """
+import file_handler
+
+def starter_item_test():
+    items = file_handler.starter_items_get_all()
+    #print(items)
+    result = test_basic_items_permutation(items)
+    #for bag in result:
+        #print(bag)
+    print(len(result))
+    return result
+
 
 def test_basic_items_permutation(basic_items_list):
     """
