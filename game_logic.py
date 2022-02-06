@@ -12,7 +12,8 @@ dragon/baron/golem/other heroes buffs
 '''
 
 class Champion:
-    def __init__(self, stats):
+    def __init__(self, name, stats):
+        self.name = name
         self.base_data = {"health": stats["health"], "hp_regen": stats["hp_regen"], "armor": stats["armor"],
                           "magic_res": stats["magic_res"], "mana": stats["mana"], "mana_regen": stats["mana_regen"],
                           "ad": stats["ad"], "aa_speed": 0, "ap": 0, "armor_pen": 0, "critical_chance": 0,
@@ -28,9 +29,9 @@ class Champion:
     def apply_items(self, bag):
         self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
         for item in bag:
-            if item != None:
-                for attribute in item.stats:
-                    self.data[attribute.type] += attribute.stat
+            for attribute in item.stats:
+                self.data[attribute.type] += attribute.stat
+
 
 
 
@@ -97,7 +98,7 @@ def ashe_tester():
                 "movement": 325,
                 "range": 600}
 
-    champion = Champion(stat_sheet)
+    champion = Champion("ashe", stat_sheet)
 
 
     #shield = Item()

@@ -12,16 +12,32 @@ def starter_item_test():
     return result
 
 
-def champion_hp_max(items):
-    ashe = game_logic.ashe_tester()
-    player = game_logic.Player(ashe)
+def champion_hp_max(player, items):
     max_hp = float(player.champion.data["health"])
-    print(max_hp)
+    #print(max_hp)
     for bag in items:
-        ashe.apply_items(bag)
+        player.bag = bag
+        player.equip_items()
         if max_hp < player.champion.data["health"]:
             max_hp = player.champion.data["health"]
-    print(max_hp)
+    return max_hp
+
+def champions_hp_max_testing_enviro(champions_database, items_database):
+    max_hp = champions_database[0].champion.data["health"]
+    max_name = champions_database[0].champion.name
+    for champion in champions_database:
+        result = champion_hp_max(champion, items_database)
+        if max_hp < result:
+            max_hp = result
+            max_name = champion.champion.name
+        print(champion.champion.name, result)
+    print(max_name, max_hp)
+
+def champions_create_objects(file):
+    champions_database = []
+    for character in file:
+        champions_database.append(game_logic.Player(game_logic.Champion(character[0], character[1])))
+    return champions_database
 
 if __name__ == '__main__':
     print("start")
@@ -30,6 +46,8 @@ if __name__ == '__main__':
 
     items_database = starter_item_test()
     #items_database = [[file_handler.Item("shield", 10, [file_handler.Stat("health", 100)])]]
-    champion_hp_max(items_database)
+    file = file_handler.champions_stats_get_all()
+    champions_database = champions_create_objects(file)
+    champions_hp_max_testing_enviro(champions_database, items_database)
 
 

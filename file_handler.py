@@ -36,20 +36,16 @@ def champions_stats_get_all():
         line = line.replace("+", "")
         line = line.replace("%", "")
         line = line.split("\t")
-        #print(line)
         index = 0
         for stat in stat_sheet.keys():
             index += 1
             if index == 19:
                 break
-            try:
-                stat_sheet[stat] = line[index]
-            except:
-                print(stat, index)
-        heroes.append([line[0], stat_sheet])
-    for hero in heroes:
-        # print(hero)
-        pass
+
+            stat_sheet[stat] = float(line[index])
+
+        heroes.append([line[0], stat_sheet.copy()])
+
     return heroes
 
 
@@ -106,7 +102,4 @@ def starter_items_get_all():
         new_item = Item(line[0], line[1], stats)
         items.append(new_item)
 
-    for item in items:
-        #print(item)
-        pass
     return items

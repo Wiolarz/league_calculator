@@ -16,7 +16,12 @@ def test_basic_items_permutation(basic_items_list):
                 for item_4 in basic_items_list:
                     for item_5 in basic_items_list:
                         for item_6 in basic_items_list:
-                            result.append([item_1, item_2, item_3, item_4, item_5, item_6])
+                            bag = []
+                            items = [item_1, item_2, item_3, item_4, item_5, item_6]
+                            for item in items:
+                                if item != None:
+                                    bag.append(item)
+                            result.append(bag)
     return result
 
 
