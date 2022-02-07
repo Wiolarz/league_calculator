@@ -12,6 +12,21 @@ def starter_item_test():
     print(len(result))
     return result
 
+def include_only_durability_items(items_database):
+    """
+
+    :param items_database:
+    :return:
+    """
+    reduced_list = []
+    durability_stat_list = ["health", "hp_regen", "armor", "magic_res"]
+    for item in items_database:
+        for stat in item.stats:
+            if stat in durability_stat_list:
+                reduced_list.append(item)
+                break
+    return reduced_list
+
 
 def test_basic_items_permutation(basic_items_list):
     """
@@ -33,6 +48,13 @@ def test_basic_items_permutation(basic_items_list):
                                     bag.append(item)
                             result.append(bag)
     return result
+
+def test2(items_list):
+    used = -1
+    for item1 in items_list:
+        pass
+
+
 
 
 

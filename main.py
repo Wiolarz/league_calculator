@@ -30,7 +30,7 @@ def champions_hp_max_testing_enviro(champions_database, items_database):
     """
     max_hp = champions_database[0].champion.data["health"]
     max_name = champions_database[0].champion.name
-    for champion in champions_database:
+    for champion in champions_database:                         # for each champion
         result = champion_hp_max(champion, items_database)
         if max_hp < result:
             max_hp = result

@@ -51,12 +51,7 @@ def champions_stats_get_all():
 
 
 class Stat:
-    def __init__(self, type = None, stat = None):
-        if stat == None:
-            stat = 0
-        if type == None:
-            type = "health"
-
+    def __init__(self, type, stat):
         self.stat = float(stat)
         self.type = type
 
@@ -65,11 +60,7 @@ class Stat:
 
 
 class Item:
-    def __init__(self, name = None, cost = None, stats = None):
-        if name == None:
-            name = "error"
-        if cost == None:
-            cost = 0
+    def __init__(self, name, cost, stats = None):
         if stats == None:
             stats = []
         self.name = name
@@ -83,6 +74,32 @@ class Item:
     def __repr__(self):
         return str(self.name) + " " + str(self.cost) + "g " + str(self.stats)
 
+def items_get_all(file_names=None):
+    """
+    Method that returns every item from files
+    :param file_names:
+    :return: list of Item object created from txt files of objects
+    """
+    if file_names == None:
+        file_names = ["starter_items_stats.txt", "basic_items_stats.txt"]
+
+    items = []  # {"name": "", "item_object": {}}
+    for file_name in file_names:
+        file = list(open(file_name).read().split("\n"))
+
+        for line in file:
+            line = line.split("\t")
+            # print(line)
+            index = 0
+            stats = []
+
+            for index in range(3, len(line), 2):
+                stats.append(Stat(line[index - 1], line[index]))
+
+            new_item = Item(line[0], line[1], stats)
+            items.append(new_item)
+
+        return items
 
 def starter_items_get_all():
     items = []  # {"name": "", "item_object": {}}
