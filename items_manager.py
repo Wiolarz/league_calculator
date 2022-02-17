@@ -50,12 +50,39 @@ def test_basic_items_permutation(basic_items_list):
     return result
 
 def test2(items_list):
-    used = -1
-    for item1 in items_list:
-        pass
+    p = 1
+    n = 6
+    i = [0, 0, 0, 0, 0, 0]
+    while p <= n:
+        if i[p] < n:
+            i[p] += 1
+            break
+        else:
+            i[p] = 1
+            p += 1
+    print(i)
+
+def test3():
+    for number in range(1, 200):
+        testing_number = str(number)
+        problem = False
+        used_digits = []
+
+        for digit in testing_number:
+            if digit in used_digits:
+                problem = True
+            else:
+                used_digits.append(digit)
+        if not problem:
+            print(number)
 
 
 
+
+
+if __name__ == '__main__':
+    print("start tests of items_manager")
+    test3()
 
 
 

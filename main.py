@@ -1,7 +1,7 @@
 import game_logic
 import items_manager
 import champions_manager
-
+import combat
 
 
 
@@ -40,15 +40,21 @@ def champions_hp_max_testing_enviro(champions_database, items_database):
     return max_name, max_hp
 
 
+def champions_max_hp_testing():
+    items_database = items_manager.starter_item_test()
+    # items_database = [[file_handler.Item("shield", 10, [file_handler.Stat("health", 100)])]]
+    champions_database = champions_manager.champions_create_objects()
+    champions_hp_max_testing_enviro(champions_database, items_database)
+
 
 if __name__ == '__main__':
-    print("start")
+    print("start of the main file")
     #game_logic.test()
     #file_handler.champions_stats_get_all()
 
-    items_database = items_manager.starter_item_test()
-    #items_database = [[file_handler.Item("shield", 10, [file_handler.Stat("health", 100)])]]
     champions_database = champions_manager.champions_create_objects()
-    champions_hp_max_testing_enviro(champions_database, items_database)
+
+    combat.champion_durability(champions_database[0].champion, champions_database[1].champion)
+
 
 

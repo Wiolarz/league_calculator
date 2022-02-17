@@ -20,18 +20,18 @@ a single boots item
 Some items have a keyword unique in inventory there duplicate version of "unique item"
 There are also restrictions such as "limited to 1"
 
-"mana charge" 6 +1s
-"jungle or support" 4 +4e +7s
-"crit modifier" 2 +1e
-"last whisper" 2 +1e
-"Lifeline" 2 + 1m + 1e
-"quicksilver" 2 +1e
-"hydra" 2 +1e
-"voidpen" 1 +1e
-Glory 1 +1s
-"sightstone" 1 +1e
-Guardian 4s
-mythic component 5e
+"mana charge" 6 +1s (8)
+"jungle or support" 4 +4e +7s (16)
+"crit modifier" 2 +1e (4)
+"last whisper" 2 +1e (4)
+"Lifeline" 2 + 1m + 1e (5)
+"quicksilver" 2 +1e (4)
+"hydra" 2 +1e (4)
+"voidpen" 1 +1e (3)
+Glory 1 +1s (3)
+"sightstone" 1 +1e (3)
+Guardian 4s (5)
+mythic component 5e (6)
 
 
 

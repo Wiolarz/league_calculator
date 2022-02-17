@@ -16,7 +16,7 @@ class Champion:
         self.name = name
         self.base_data = {"health": stats["health"], "hp_regen": stats["hp_regen"], "armor": stats["armor"],
                           "magic_res": stats["magic_res"], "mana": stats["mana"], "mana_regen": stats["mana_regen"],
-                          "ad": stats["ad"], "aa_speed": 0, "ap": 0, "armor_pen": 0, "critical_chance": 0,
+                          "ad": stats["ad"], "aa_speed": stats["as"], "ap": 0, "armor_pen": 0, "critical_chance": 0,
                           "critical_dmg": 0, "lifesteal": 0, "magic_pen": 0, "omnivamp": 0, "physival_vamp": 0,
                           "heal_shield": 0, "tenacity": 0, "slow_res": 0, "ability_haste": 0, "as": stats["as"]}
 
@@ -26,8 +26,21 @@ class Champion:
         self.mana = self.data["mana"]
 
     def apply_items(self, bag):
-        self.data = self.base_data.copy()  # before applying new items statistics we rest champion values
-        health_regen = 100  # percentage value of increased health regen
+        self.data = self.base_data.copy()  # before applying new items statistics we reset champion values
+
+        # percentage value of
+        health_regen = 100
+        attack_speed = 100
+        mana_regen = 100
+
+        # not sure: lifesteal, movement speed
+        magic_pen = 100
+        armor_pen = 100
+        heal_shield_power = 100
+
+
+
+
         for item in bag:
             for attribute in item.stats:
                 if attribute.type == "hp_regen":
@@ -37,8 +50,24 @@ class Champion:
 
         self.data["hp_regen"] *= (health_regen / 100)
 
-    def aa_dps(self):
-        return self.ad * self.aa_speed
+    def auto_attack_speed(self):
+        """
+        Returns auto attack speed value as number of seconds between each auto attack
+        :return:
+        """
+        speed = self.data["aa_speed"]
+
+        if speed > 2.5:
+            speed = 2.5  # max cap
+
+        return speed
+
+    def auto_attack(self):
+        """
+
+        :return:
+        """
+        return self.data["ad"]
 
     def receive_damage(self, value, type):
         """
