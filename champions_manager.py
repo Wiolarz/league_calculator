@@ -23,3 +23,7 @@ def champions_create_objects(file=None):
     for character in file:
         champions_database.append(game_logic.Player(game_logic.Champion(character[0], character[1])))
     return champions_database
+
+
+def champions_database_levelup(database, desired_level):
+    pass#for champion in database:
