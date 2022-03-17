@@ -1,6 +1,11 @@
 
 def champions_stats_get_all():
-    heroes = [] # {"name": "", "stats": {}}
+    '''
+    Returns a list of heroes basic statistics sheet as a dictionary.
+    '''
+    
+    file = list(open("champions_stats.txt").read().split("\n"))
+    
     stat_sheet = {
         "health": 0,
         "health_growth": 0,
@@ -29,15 +34,15 @@ def champions_stats_get_all():
         "movement": 0,
         "range": 0,
         "bonus_as": 0}
-
-    file = list(open("champions_stats.txt").read().split("\n"))
-
-    for line in file:
+    
+    heroes = [] # {"name": "", "stats": {}}
+    
+    for line in file:  # Each hero has it's own line
         line = line.replace("+", "")
         line = line.replace("%", "")
         line = line.split("\t")
-        #print(line)
-        index = 0
+        # print(line)
+        index = 0 # TODO check if this index is needed
         for stat in stat_sheet.keys():
             index += 1
             if index == 19:
@@ -86,24 +91,27 @@ class Item:
 
 
 def starter_items_get_all():
-    items = []  # {"name": "", "item_object": {}}
-
+    '''
+    Returns: list of arrays [item_name, Item object]
+    '''
+    
     file = list(open("starter_items_stats.txt").read().split("\n"))
-
+    
+    items = []  # {"name": "", "item_object": {}}
+    
     for line in file:
         line = line.split("\t")
         # print(line)
-        index = 0
+        
         stats = []
-
         for index in range(3, len(line), 2):
+            # loop provides pairs of indexes that provide a name of a statistic and it's value
             stats.append(Stat(line[index - 1], line[index]))
-
 
         new_item = Item(line[1], stats)
         items.append([line[0], new_item])
 
     for item in items:
-        print(item)
+        # print(item)
         pass
     return items
