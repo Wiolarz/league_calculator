@@ -1,6 +1,5 @@
-
 def champions_stats_get_all():
-    heroes = [] # {"name": "", "stats": {}}
+    heroes = []  # {"name": "", "stats": {}}
     stat_sheet = {
         "health": 0,
         "health_growth": 0,
@@ -39,7 +38,7 @@ def champions_stats_get_all():
         index = 0
         for stat in stat_sheet.keys():
             index += 1
-            if index == 19:
+            if index == 19:  # TODO: check if this line should be removed
                 break
 
             stat_sheet[stat] = float(line[index])
@@ -47,7 +46,6 @@ def champions_stats_get_all():
         heroes.append([line[0], stat_sheet.copy()])
 
     return heroes
-
 
 
 class Stat:
@@ -60,8 +58,8 @@ class Stat:
 
 
 class Item:
-    def __init__(self, name, cost, stats = None):
-        if stats == None:
+    def __init__(self, name, cost, stats=None):
+        if stats is None:
             stats = []
         self.name = name
         self.stats = stats
@@ -74,13 +72,14 @@ class Item:
     def __repr__(self):
         return str(self.name) + " " + str(self.cost) + "g " + str(self.stats)
 
+
 def items_get_all(file_names=None):
     """
     Method that returns every item from files
     :param file_names:
     :return: list of Item object created from txt files of objects
     """
-    if file_names == None:
+    if file_names is None:
         file_names = ["starter_items_stats.txt", "basic_items_stats.txt"]
 
     items = []  # {"name": "", "item_object": {}}
@@ -101,6 +100,7 @@ def items_get_all(file_names=None):
 
         return items
 
+
 def starter_items_get_all():
     items = []  # {"name": "", "item_object": {}}
 
@@ -114,7 +114,6 @@ def starter_items_get_all():
 
         for index in range(3, len(line), 2):
             stats.append(Stat(line[index - 1], line[index]))
-
 
         new_item = Item(line[0], line[1], stats)
         items.append(new_item)

@@ -1,5 +1,4 @@
-'''
-
+"""
 First version aims to calculate HP value of a champion based on his level
 Code structure:
 Each time we try new item combination we test it on a player which consists of a
@@ -8,8 +7,8 @@ hero object - base statistics and skills
 Backpack object - 6 items slots + potion effect
 Runes page
 dragon/baron/golem/other heroes buffs
+"""
 
-'''
 
 class Champion:
     def __init__(self, name, stats):
@@ -37,9 +36,6 @@ class Champion:
         magic_pen = 100
         armor_pen = 100
         heal_shield_power = 100
-
-
-
 
         for item in bag:
             for attribute in item.stats:
@@ -91,15 +87,14 @@ class Champion:
 
 
 class Player:
-    def __init__(self, champion, bag = None):
-        if bag == None:
+    def __init__(self, champion, bag=None):
+        if bag is None:
             bag = []
         self.champion = champion  # object champion
         self.bag = bag  # is an array of the maximum size of 6 of objects "items"
 
     def equip_items(self):
         self.champion.apply_items(self.bag)
-
 
 
 def champion_levelup(level, base_sheet):
@@ -125,10 +120,8 @@ def champion_levelup(level, base_sheet):
     return stats
 
 
-
-
 def ashe_tester():
-    stat_sheet ={# example Ashe statistics
+    stat_sheet = {  # example Ashe statistics
                 "health": 570,
                 "hp_regen": 3.5,
                 "armor": 26,
@@ -153,16 +146,12 @@ def ashe_tester():
 
     champion = Champion("ashe", stat_sheet)
 
+    # shield = Item()
 
-    #shield = Item()
+    # bag.items.append(shield)
 
-    #bag.items.append(shield)
+    # player = Player(champion, bag)
 
-    #player = Player(champion, bag)
-
-
-    #ashe = champion_levelup(10, stat_sheet)
+    # ashe = champion_levelup(10, stat_sheet)
 
     return champion
-
-

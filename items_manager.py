@@ -3,14 +3,16 @@ File for managing items and creating builds
 """
 import file_handler
 
+
 def starter_item_test():
     items = file_handler.starter_items_get_all()
-    #print(items)
+    # print(items)
     result = test_basic_items_permutation(items)
-    #for bag in result:
-        #print(bag)
+    # for bag in result:
+        # print(bag)
     print(len(result))
     return result
+
 
 def include_only_durability_items(items_database):
     """
@@ -44,10 +46,11 @@ def test_basic_items_permutation(basic_items_list):
                             bag = []
                             items = [item_1, item_2, item_3, item_4, item_5, item_6]
                             for item in items:
-                                if item != None:
+                                if item is not None:
                                     bag.append(item)
                             result.append(bag)
     return result
+
 
 def test2(items_list):
     p = 1
@@ -61,6 +64,7 @@ def test2(items_list):
             i[p] = 1
             p += 1
     print(i)
+
 
 def test3():
     for number in range(1, 200):
@@ -77,13 +81,9 @@ def test3():
             print(number)
 
 
-
-
-
 if __name__ == '__main__':
     print("start tests of items_manager")
     test3()
-
 
 
 def test_basic_items(player, basic_items_list):

@@ -4,7 +4,6 @@ import champions_manager
 import combat
 
 
-
 def champion_hp_max(player, items):
     """
     Calculate champion maximum possible Health value
@@ -13,13 +12,14 @@ def champion_hp_max(player, items):
     :return: champions maximum health value
     """
     max_hp = float(player.champion.data["health"])
-    #print(max_hp)
+    # print(max_hp)
     for bag in items:
         player.bag = bag
         player.equip_items()
         if max_hp < player.champion.data["health"]:
             max_hp = player.champion.data["health"]
     return max_hp
+
 
 def champions_hp_max_testing_enviro(champions_database, items_database):
     """
@@ -50,6 +50,7 @@ def champions_max_hp_testing():
     champions_database = champions_manager.champions_create_objects()
     champions_hp_max_testing_enviro(champions_database, items_database)
 
+
 def champions_basic_durability_test():
     print("start of champions_basic_durability_test")
     champions_database = champions_manager.champions_create_objects()
@@ -64,7 +65,6 @@ def champions_basic_durability_test():
         for defending_champ in champions_database:
             score = combat.champion_durability(attacking_champ, defending_champ)  # how_many_attack_were_needed_to_kill
 
-
             if score != -2:
                 if most_durable < score:
                     most_durable = score
@@ -72,7 +72,7 @@ def champions_basic_durability_test():
                     print(most_durable, most_durable_name, "biggest defender")
                     print(attacking_champ.champion.name, "\n")
 
-                if biggest_damage > score and score != 0:
+                if biggest_damage > score != 0:
                     biggest_damage = score
                     biggest_damage_name = attacking_champ.champion.name
                     print(biggest_damage, biggest_damage_name, "biggest attacker")
@@ -80,11 +80,9 @@ def champions_basic_durability_test():
     print(biggest_damage, biggest_damage_name)
     print(most_durable, most_durable_name)
 
+
 if __name__ == '__main__':
     print("start of the main file")
-    #game_logic.test()
-    #file_handler.champions_stats_get_all()
+    # game_logic.test()
+    # file_handler.champions_stats_get_all()
     champions_basic_durability_test()
-
-
-
